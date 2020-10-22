@@ -1,0 +1,235 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/app.css">
+    <title>{% block title %}Todo App{% endblock %}</title>
+    <style type="text/css">
+    * {
+  box-sizing: border-box; }
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important; }
+
+.clearfix::before, .clearfix::after {
+  clear: both;
+  content: '';
+  display: table; }
+
+.narrow_form {
+  max-width: 420px;
+  margin: 50px auto 60px;
+  box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 30px 25px; }
+  .narrow_form h2 {
+    margin-bottom: 20px; }
+
+.search_section {
+  position: fixed;
+  right: 30px;
+  bottom: 80px; }
+  .search_section .search_col {
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s ease all;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+    bottom: -40px; }
+    .search_section .search_col .cls {
+      background: transparent;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      border: none; }
+      .search_section .search_col .cls:hover, .search_section .search_col .cls:focus {
+        outline: none; }
+      .search_section .search_col .cls span {
+        display: inline-block;
+        width: 2px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 15px;
+        background: #333;
+        transform: rotate(45deg); }
+        .search_section .search_col .cls span:nth-child(2) {
+          transform: rotate(-45deg); }
+    .search_section .search_col.show {
+      opacity: 1;
+      visibility: visible;
+      bottom: 0; }
+    .search_section .search_col form {
+      padding: 15px 20px; }
+  .search_section .sbtn {
+    background: #333;
+    outline: none;
+    border-color: #333;
+    margin-bottom: 0px !important; }
+  .search_section .s_icon {
+    background: #fff;
+    float: right;
+    border: none;
+    cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    border-radius: 50%;
+    transition: .5s ease all;
+    outline: none; }
+    .search_section .s_icon:focus {
+      outline: none; }
+    .search_section .s_icon:hover {
+      outline: none;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1); }
+
+/*list page*/
+.list_all {
+  margin: auto; }
+  .list_all h1 {
+    margin-bottom: 25px; }
+  .list_all .popup_div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: none; }
+    .list_all .popup_div.show {
+      display: block; }
+    .list_all .popup_div .inside {
+      background: #fff;
+      margin: 40px auto;
+      border-radius: 25px;
+      overflow: hidden;
+      padding: 20px 30px;
+      max-width: 480px;
+      position: relative; }
+    .list_all .popup_div .cls {
+      background: transparent;
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      cursor: pointer;
+      border: none; }
+      .list_all .popup_div .cls:hover, .list_all .popup_div .cls:focus {
+        outline: none; }
+      .list_all .popup_div .cls span {
+        display: inline-block;
+        width: 2px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 15px;
+        background: #333;
+        transform: rotate(45deg); }
+        .list_all .popup_div .cls span:nth-child(2) {
+          transform: rotate(-45deg); }
+
+/*list page*/
+
+    </style>
+</head>
+
+<body>
+    <div class="login-dark" style="background-image: url('../Images/life_line.jpg');background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%; height:100%;">
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-dark" style="padding-left: 15px; padding-right: 15px;">
+            <a class="navbar-brand" href="#">Student Site</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Add<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" active href="{% url 'list' %}">List All Students</a>
+                    </li>
+                    {% comment %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'sortdata' %}">Priority</a>
+                    </li> {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+            </div>
+        </nav>
+        {% block content %}
+        <div class="search_section">
+            <div class="s_row clearfix">
+                <div class="search_col">
+                    <button class="cls"><span></span><span></span></button>
+                    <form action="{% url 'searchdata' %}">
+                        <!-- <label for="query">Search By Student</label> -->
+                        <input type="search" class="form-control" name="query" id="query" placeholder="search by student">
+                        <button type="submit" class="btn btn-primary sbtn" style="display: block;margin: 1rem auto;">Search <img style="max-width: 25px;" src="https://img.icons8.com/cotton/64/000000/search--v2.png"/></button>
+                    </form>
+                </div>
+            </div>
+            <button class="s_icon"><img src="https://img.icons8.com/cotton/64/000000/search--v2.png"/></button>
+        </div>
+        <div class="row">
+            <div class="col-md-6 narrow_form">
+                <h2 class="text-center">Add new entry</h2>
+                <form action="{% url 'submit' %}">
+                    <div class="form-group">
+                        <label for="id">Student ID</label>
+                        <input type="number" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Student Name</label>
+                        <input type="text" class="form-control" id="description" name="description">
+                    </div>
+                    <div class="form-group">
+                        <label for="marks">Student Mark</label>
+                        <input type="number" class="form-control" id="priority" name="priority">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin: 0 auto;display: block;">Add Student</button>
+                </form>
+            </div>
+        </div>
+        {% endblock %}
+
+        <footer>
+            <p class="text-center bg-dark fixed-bottom text-light my-0 py-3">
+                Made by Pradeep
+            </p>
+        </footer>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script>
+            $('.s_icon').click(function() {
+                $('.search_col').toggleClass('show');
+            });
+            $('.cls').click(function() {
+                $('.search_col').removeClass('show');
+            })
+             $('.edit').click(function() {
+                $('.popup_div').addClass('show');
+            });
+            $('.cls').click(function() {
+                $('.popup_div').removeClass('show');
+            })
+        </script>
+</body>
+
+</html>
