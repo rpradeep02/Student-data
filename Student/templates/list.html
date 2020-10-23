@@ -6,8 +6,9 @@
     <div class="col-md-6" style="margin:0 auto;">
         <div class="card container-fluid" style="margin-top: 1rem;">
             <div class="card-body">
-              <h5 class="card-title">{{eachtodo.title}} {{eachtodo.priority}}</h5>
-              <p class="card-text">{{eachtodo.description}}</p>
+              <h5 class="card-title">ID: {{eachtodo.title}} </h5>
+              <p class="card-text">Name: {{eachtodo.description}}</p>
+              <p class="card-text">Mark: {{eachtodo.priority}}</p>
               <p class="card-text">{{eachtodo.created_at}}</p>
               
               <a href="/delete/{{eachtodo.id}}" class="btn btn-danger">Delete</a>
