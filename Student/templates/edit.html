@@ -5,16 +5,16 @@
     <div class="col-md-6" style="margin: 0 auto;">
       <form action="/update/{{id}}">
         <div class="form-group">
-          <label for="title">Student name</label>
-          <input type="text" class="form-control" id="title" name="title" value={{description}}>
+          <label for="title">Student ID</label>
+          <input type="text" class="form-control" id="title" name="title" value={{title}}>
         </div>
         <div class="form-group">
-          <label for="description">Student Mark</label>
-          <textarea class="form-control" id="description" name="description" rows="3">{{priority}}</textarea>
+          <label for="description">Student Name</label>
+          <textarea class="form-control" id="description" name="description" rows="1">{{description}}</textarea>
         </div>
         <div class="form-group">
-          <label for="priority">Student ID</label>
-          <input type="number" class="form-control" id="priority" name="priority" value={{title}}>
+          <label for="priority">Student Mark</label>
+          <input type="number" class="form-control" id="priority" name="priority" value={{priority}}>
         </div> 
         <button type="submit" class="btn btn-primary" style="margin: 0 auto;display: block;">Update</button>
       </form>
